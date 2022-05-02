@@ -11,7 +11,7 @@ Run `npm start` for a dev server. Application will load automatically.
 
 ## Testing packager
 
-Install 'electron-packager', then run 'electron-packager . passbook-app'
+Install `npm i electron-packager --save-dev`, then run 'electron-packager . passbook-app`
 
 ## Code scaffolding
 
