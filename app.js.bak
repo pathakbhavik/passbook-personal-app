@@ -1,0 +1,72 @@
+const {app, BrowserWindow} = require('electron')
+    const url = require("url");
+    const path = require("path");
+    const jsonServer = require("json-server");
+/*     const express = require('express');
+    const cors = require('cors');
+   const corsOptions = {
+    origin: '*',
+    allowedHeaders: ['Content-Type', 'Authorization', 'Content-Length', 'X-Requested-With', 'Accept'],
+    methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+    }; */
+
+
+    let mainWindow
+
+    function createWindow () {
+      /* express.use(cors(corsOptions));
+      app.get('/', cors(corsOptions), ((req,res) => {
+         res.send();
+      })); */
+
+       const server = jsonServer.create();
+       const router = jsonServer.router(path.join(__dirname, `/db.json`));
+       const middlewares = jsonServer.defaults({
+         static:'/dist/assets/data/Data.json'
+       });
+       server.use(jsonServer.rewriter({
+         "/api/*":"/$1"
+       }))
+       server.use(middlewares);
+       server.use(router);
+       server.listen(3000, () => {  console.log('JSON Server is running')  });
+
+      mainWindow = new BrowserWindow({
+        width: 800,
+        height: 600,
+        show:false,
+        autoHideMenuBar:true,
+        icon:__dirname+`/dist/assets/images/logo_1.ico`,
+        webPreferences: {
+          nodeIntegration: true
+        },
+      })
+
+      mainWindow.maximize();
+      mainWindow.show();
+
+      mainWindow.loadURL(
+        url.format({
+          pathname: path.join(__dirname, `/dist/passbook-app/index.html`),
+          protocol: "file:",
+          slashes: true
+        })
+      );
+      // Open the DevTools.
+      mainWindow.webContents.openDevTools()
+
+      mainWindow.on('closed', function () {
+        mainWindow = null;
+      })
+    }
+
+    app.on('ready', createWindow)
+
+    app.on('window-all-closed', function () {
+      if (process.platform !== 'darwin') app.quit()
+    })
+
+    app.on('activate', function () {
+      if (mainWindow === null) createWindow()
+    })

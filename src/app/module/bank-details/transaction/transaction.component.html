@@ -1,0 +1,116 @@
+<mat-card>
+  <form
+    [formGroup]="transactionForm"
+    (ngSubmit)="onAddTransaction()"
+    class="transactionFormClass"
+  >
+    <mat-form-field appearance="outline" class="col-1">
+      <mat-label>Transaction date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="MM/DD/YYYY"
+        formControlName="transactionDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-1">
+      <mat-label>Particular</mat-label>
+      <input
+        type="text"
+        placeholder="Select particular"
+        matInput
+        formControlName="particular"
+        [matAutocomplete]="particularAuto"
+      />
+      <mat-autocomplete
+        autoActiveFirstOption
+        #particularAuto="matAutocomplete"
+        [panelWidth]="'auto'"
+      >
+        <mat-option
+          *ngFor="let option of filteredMasterDetails | async"
+          [value]="option"
+          class="particularItem"
+        >
+          {{ option }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-1">
+      <mat-label>Reference</mat-label>
+      <input
+        matInput
+        placeholder="Enter reference"
+        formControlName="reference"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-1">
+      <mat-label>Transaction Mode</mat-label>
+      <input
+        type="text"
+        placeholder="Select transaction Mode"
+        matInput
+        formControlName="transactionMode"
+        [matAutocomplete]="transactionModeAuto"
+      />
+      <mat-autocomplete
+        autoActiveFirstOption
+        #transactionModeAuto="matAutocomplete"
+      >
+        <mat-option
+          *ngFor="let option of transactionModeOption"
+          [value]="option.name"
+          class="particularItem"
+        >
+          {{ option.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-1">
+      <mat-label>Transaction Type</mat-label>
+      <input
+        type="text"
+        placeholder="Select transaction type"
+        matInput
+        formControlName="transactionType"
+        [matAutocomplete]="transactionTypeAuto"
+      />
+      <mat-autocomplete
+        autoActiveFirstOption
+        #transactionTypeAuto="matAutocomplete"
+      >
+        <mat-option
+          *ngFor="let option of transactionTypeOption"
+          [value]="option.name"
+          class="particularItem"
+        >
+          {{ option.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-1">
+      <mat-label>Transaction Amount</mat-label>
+      <input
+        matInput
+        type="number"
+        placeholder="Enter transaction amount"
+        formControlName="transactionAmount"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-1">
+      <mat-label>Remark</mat-label>
+      <input matInput placeholder="Enter remark" formControlName="remark" />
+    </mat-form-field>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="transactionForm.invalid"
+      class="col-1"
+    >
+      Add Transaction
+    </button>
+  </form>
+</mat-card>
