@@ -36,7 +36,7 @@ const {app, BrowserWindow} = require('electron')
         })
       );
       // Open the DevTools.
-      //mainWindow.webContents.openDevTools()
+      mainWindow.webContents.openDevTools()
         
       mainWindow.on("ready-to-show",()=>{
         mainWindow.maximize();
@@ -54,7 +54,7 @@ const {app, BrowserWindow} = require('electron')
     app.on('ready', createWindow)
 
     app.on('window-all-closed', function () {
-      if (process.platform !== 'darwin') app.quit()
+      /* if (process.platform !== 'darwin') */ app.quit()
     })
 
     app.on('activate', function () {
