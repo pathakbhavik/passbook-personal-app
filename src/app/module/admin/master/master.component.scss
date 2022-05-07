@@ -1,0 +1,115 @@
+.mat-card.scrollable-content {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    >.mat-card-title-group {
+        display: block;
+    }
+
+    >.mat-card-content {
+        overflow-y: auto;
+    }
+}
+
+
+th.mat-header-cell:first-of-type,
+td.mat-cell:first-of-type,
+td.mat-footer-cell:first-of-type {
+    padding-left: unset;
+}
+
+tr {
+    &.mat-row {
+        height: 2.35rem;
+    }
+
+    .mat-cell {
+        font-size: 0.85rem;
+    }
+}
+
+.mat-column-groupHead {
+    flex: 1;
+    max-width: 150px;
+    padding: 0 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mat-column-subHead {
+    flex: 2;
+    padding: 0 5px;
+    max-width: 160px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mat-column-accountHead {
+    flex: 2;
+    padding: 0 5px;
+    max-width: 160px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mat-column-ledger {
+    flex: 3;
+    max-width: 230px;
+    padding: 0 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mat-column-costCenter {
+    flex: 1;
+    max-width: 110px;
+    padding: 0 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mat-column-costCategory {
+    flex: 1;
+    max-width: 110px;
+    padding: 0 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.mat-column-action {
+    flex: 1;
+    max-width: 80px;
+    padding: 0 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+.masterFormClass {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    .col-1 {
+        flex: 1;
+        width: 18vw;
+        max-width: 18vw;
+        min-width: 18vw;
+        margin: 0 0 0 1rem;
+
+        &.mat-raised-button {
+            height: 42px;
+            line-height: 42px;
+            margin: 0 0 0 auto;
+        }
+    }
+}

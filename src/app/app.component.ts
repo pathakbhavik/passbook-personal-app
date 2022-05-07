@@ -8,7 +8,7 @@ import { InitService } from './core/services/init.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'Personal Passbook Manager';
+  title = 'MoneySense';
   subscription: Subscription[] = [];
 
   constructor(private initService: InitService) {

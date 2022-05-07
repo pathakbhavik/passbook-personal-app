@@ -9,10 +9,8 @@ import {
 import { Master } from 'src/app/core/enums/master.enum';
 import { Transaction } from 'src/app/core/models/transaction.model';
 import { TransactionService } from 'src/app/core/services/transaction.service';
-import { TransactionStore } from 'src/app/core/stores/transaction.store';
 import { MasterStore } from 'src/app/core/stores/master.store';
 import { TransactionEnum } from 'src/app/core/enums/transaction.enum';
-import { BankService } from 'src/app/core/services/bank.service';
 import { BankDetailsStore } from 'src/app/core/stores/bank.store';
 import { BankDetails } from 'src/app/core/models/bankDetails.model';
 import { ToastMessageService } from 'src/app/core/services/toast-message.service';
@@ -34,7 +32,7 @@ export class TransactionComponent implements OnInit {
   subscription: Subscription[] = [];
   masterDetail: any;
   masterDetailList: any;
-  filteredMasterDetails: Observable<string[]> | undefined;
+  filteredMasterDetails: Observable<any[]> | undefined;
   activeId: string = '';
 
   transactionForm: FormGroup = new FormGroup({
@@ -69,7 +67,7 @@ export class TransactionComponent implements OnInit {
     this.subscription.push(
       this.masterStore.bindStore().subscribe((data) => {
         this.masterDetail = data;
-        this.masterDetailList = Object.keys(data);
+        //this.masterDetailList = Object.keys(data);
       }),
       this.route.params.subscribe((param) => {
         this.activeId = param['bank_accountName'];
@@ -80,10 +78,10 @@ export class TransactionComponent implements OnInit {
     );
   }
 
-  private _filter(value: string): string[] {
+  private _filter(value: string): any {
     const filterValue = value.toLowerCase();
-    return this.masterDetailList?.filter((option: any) =>
-      option.toLowerCase().includes(filterValue)
+    return this.masterDetail?.filter((option: any) =>
+      option[this.MASTER.LEDGER].toLowerCase().includes(filterValue)
     );
   }
 
@@ -130,12 +128,12 @@ export class TransactionComponent implements OnInit {
         ? `FY ${currentYear}-${currentYear + 1}`
         : `FY ${currentYear - 1}-${currentYear}`;
 
-    let headers = this.masterDetail[data.particular];
+    /* let headers = this.masterDetail[data.particular];
     data.groupHead = headers[this.MASTER.GROUP_HEAD];
     data.subHead = headers[this.MASTER.SUB_HEAD];
     data.accountHead = headers[this.MASTER.ACCOUNT_HEAD];
     data.costCenter = headers[this.MASTER.COST_CENTER];
-    data.costCategory = headers[this.MASTER.COST_CATEGORY];
+    data.costCategory = headers[this.MASTER.COST_CATEGORY]; */
 
     return data;
   }

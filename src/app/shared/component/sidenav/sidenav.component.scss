@@ -3,21 +3,22 @@
     color: var(--palette-grey-2-rgb);
 
     .app-logo {
-        min-height: 120px;
+        min-height: 8rem;
+        margin-bottom: 2rem;
         justify-content: center;
         align-items: center;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         img {
-            height: 60px;
-            width: 60px;
-            margin: 0 10px 0px 0px;
+            height: 4rem;
+            width: auto;
+            margin: 0 0 1rem 0;
         }
         strong{
             font-size: 2em;
-            line-height: 1em;
-            font-weight: 100;
-            letter-spacing: 3px;
+            line-height: 0em;
+            font-weight: 400;
+            letter-spacing: 2px;
         }
     }
 

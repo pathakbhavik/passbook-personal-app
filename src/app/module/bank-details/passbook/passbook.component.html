@@ -58,19 +58,29 @@
 
     <ng-container matColumnDef="particular">
       <th mat-header-cell *matHeaderCellDef>Particular</th>
-      <td mat-cell *matCellDef="let element">{{ element.particular }}</td>
+      <td mat-cell *matCellDef="let element" [matTooltip]="element.particular">
+        {{ element.particular }}
+      </td>
       <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <ng-container matColumnDef="reference">
       <th mat-header-cell *matHeaderCellDef>Reference</th>
-      <td mat-cell *matCellDef="let element">{{ element.reference }}</td>
+      <td mat-cell *matCellDef="let element" [matTooltip]="element.reference">
+        {{ element.reference }}
+      </td>
       <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <ng-container matColumnDef="mode">
       <th mat-header-cell *matHeaderCellDef>Mode</th>
-      <td mat-cell *matCellDef="let element">{{ element.transactionMode }}</td>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [matTooltip]="element.transactionMode"
+      >
+        {{ element.transactionMode }}
+      </td>
       <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
@@ -107,7 +117,7 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef>Action</th>
       <td mat-cell *matCellDef="let element">
-        <mat-icon (click)="onDeleteTransaction(element)">
+        <mat-icon (click)="onDeleteTransaction(element)" class="pointer">
           delete_outline</mat-icon
         >
         <!--         <mat-icon (click)="onEditTransaction(element)">edit_outline</mat-icon> -->

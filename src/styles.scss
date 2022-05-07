@@ -59,15 +59,17 @@ body {
 /* CUSTOM APP SCSS */
 mat-card {
     margin: 0.5em 1em;
-    &.primary{
+
+    &.primary {
         border: 1px solid var(--primary-color);
-    background: var(--primary-color);
-    color: var(--text-primary-color);
+        background: var(--primary-color);
+        color: var(--text-primary-color);
     }
-    &.accent{
-    border: 1px solid var(--accent-color);
-    background: var(--accent-color);
-    color: var(--text-accent-color);
+
+    &.accent {
+        border: 1px solid var(--accent-color);
+        background: var(--accent-color);
+        color: var(--text-accent-color);
     }
 }
 
@@ -103,34 +105,38 @@ form {
 .info-message {
     background-color: var(--palette-primary-light-rgb);
     color: var(--palette-primary-contrast-rgb);
+
     .mat-simple-snackbar-action {
         color: var(--palette-primary-contrast-rgb);
-      }
-  }
-  
-  .alert-message {
-      color: var(--text-warn-lighter-color);
-      background-color: var(--palette-warning-rgb);
-      .mat-simple-snackbar-action {
+    }
+}
+
+.alert-message {
+    color: var(--text-warn-lighter-color);
+    background-color: var(--palette-warning-rgb);
+
+    .mat-simple-snackbar-action {
         color: var(--text-warn-lighter-color);
     }
-  }
-  
-  .warn-message {
-      color: var(--warn-lighter-color);
-      background-color: var(--palette-quaternary-rgb);
-      .mat-simple-snackbar-action {
+}
+
+.warn-message {
+    color: var(--warn-lighter-color);
+    background-color: var(--palette-quaternary-rgb);
+
+    .mat-simple-snackbar-action {
         color: var(--warn-lighter-color);
     }
-  }
-  
-  .success-message {
-      color: var(--text-primary-lighter-color);
-      background-color: var(--palette-secondary-rgb);
-      .mat-simple-snackbar-action {
+}
+
+.success-message {
+    color: var(--text-primary-lighter-color);
+    background-color: var(--palette-secondary-rgb);
+
+    .mat-simple-snackbar-action {
         color: var(--text-primary-lighter-color);
     }
-  }
+}
 
 /* CUSTOM APP SCSS */
 
@@ -170,4 +176,9 @@ form {
     --palette-grey-7-rgb: rgb(130, 138, 151);
     --palette-grey-8-rgb: rgb(102, 109, 119);
     --palette-grey-9-rgb: rgb(60, 63, 70);
+}
+
+
+.pointer {
+    cursor: pointer;
 }

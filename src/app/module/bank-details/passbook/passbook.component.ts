@@ -1,11 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { TransactionType } from 'src/app/core/constants/transaction.constant';
 import { TransactionEnum } from 'src/app/core/enums/transaction.enum';
 import { BankDetails } from 'src/app/core/models/bankDetails.model';
 import { Transaction } from 'src/app/core/models/transaction.model';

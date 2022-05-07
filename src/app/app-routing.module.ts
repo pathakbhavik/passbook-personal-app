@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminModule } from './module/admin/admin.module';
 import { IncomeAtGlanceComponent } from './module/income-at-glance/income-at-glance.component';
 import { PendingPaymentComponent } from './module/pending-payment/pending-payment.component';
 const routes: Routes = [
@@ -22,6 +23,11 @@ const routes: Routes = [
   {
     path: 'pending-payment',
     component: PendingPaymentComponent,
+  },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./module/admin/admin.module').then((m) => m.AdminModule),
   },
 ];
 

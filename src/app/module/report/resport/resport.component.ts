@@ -1,9 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Master } from 'src/app/core/enums/master.enum';
 import { BankDetails } from 'src/app/core/models/bankDetails.model';
 import { Transaction } from 'src/app/core/models/transaction.model';
 import { BankDetailsStore } from 'src/app/core/stores/bank.store';
+import { MasterStore } from 'src/app/core/stores/master.store';
 import { TransactionStore } from 'src/app/core/stores/transaction.store';
 import * as WebDataRocks from 'webdatarocks';
 
@@ -18,6 +20,7 @@ export class ResportComponent implements OnInit {
   _wdr?: ElementRef;
   dataSetTransaction: any;
   dataSetBank: any;
+  masterDetails: any;
   @ViewChild('wdr') set wdr(wdr: ElementRef) {
     //this._refreshTable();
     this._wdr = wdr;
@@ -27,10 +30,12 @@ export class ResportComponent implements OnInit {
   subscription: Subscription[] = [];
   transactions: Transaction[] = [];
   banks: BankDetails[] = [];
+  MASTER = Master;
 
   constructor(
     private transactionStore: TransactionStore,
     private bankStore: BankDetailsStore,
+    private masterStore: MasterStore,
     private route: ActivatedRoute
   ) {
     this.subscription.push(
@@ -44,9 +49,9 @@ export class ResportComponent implements OnInit {
             Deposit: t.deposit,
             Particular: t.particular,
             Bank: t.accountName,
-            'Sub Head': t.subHead,
+            /*             'Sub Head': t.subHead,
             'Group Head': t.groupHead,
-            'Account Head': t.accountHead,
+            'Account Head': t.accountHead, */
           };
         });
       }),
@@ -74,6 +79,9 @@ export class ResportComponent implements OnInit {
       this.route.params.subscribe((param) => {
         this.activeReport = param['report_id'];
         this.updateReport();
+      }),
+      this.masterStore.bindStore().subscribe((data) => {
+        this.masterDetails = data;
       })
     );
   }
@@ -137,6 +145,27 @@ export class ResportComponent implements OnInit {
         ],
       },
     };
+
+    this.dataSetTransaction = this.dataSetTransaction.map((t: any) => {
+      const headers = this.masterDetails.find(
+        (master: any) => t.Particular === master[this.MASTER.LEDGER]
+      );
+      let headerObj = {
+        'Sub Head':
+          headers && headers[this.MASTER.SUB_HEAD]
+            ? headers[this.MASTER.SUB_HEAD]
+            : 'Unknown',
+        'Group Head':
+          headers && headers[this.MASTER.GROUP_HEAD]
+            ? headers[this.MASTER.GROUP_HEAD]
+            : 'Unknown',
+        'Account Head':
+          headers && headers[this.MASTER.ACCOUNT_HEAD]
+            ? headers[this.MASTER.ACCOUNT_HEAD]
+            : 'Unknown',
+      };
+      return { ...t, ...headerObj };
+    });
 
     switch (this.activeReport) {
       case 'particular-overview':

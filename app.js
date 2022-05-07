@@ -19,7 +19,7 @@ const {app, BrowserWindow} = require('electron')
         height: 600,
         show:false,
         autoHideMenuBar:true,
-        icon:__dirname+`/dist/assets/images/logo_1.ico`,
+        icon:__dirname+`/dist/passbook-app/assets/images/logo_1.ico`,
         webPreferences: {
           nodeIntegration: true
         },
@@ -43,7 +43,7 @@ const {app, BrowserWindow} = require('electron')
         setTimeout(()=>{
           mainWindow.show();
           splash.close(0);
-        },2200);
+        },1200);
       })
       
       mainWindow.on('closed', function () {
